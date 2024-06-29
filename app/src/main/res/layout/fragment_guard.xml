@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:fitsSystemWindows="true">
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e5e7e9"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Security"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/pink_card"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            cardElevation="16dp"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@color/pink"
+            app:cardCornerRadius="16dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_sos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SoS"
+                        android:textSize="24sp"
+                        android:elevation="8dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/text_msg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:elevation="8dp"
+                        android:textSize="14dp"
+                        android:text="In case of emergency, keep telling \nfamily to calling me"
+                        android:textColor="#fff" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_sos"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginStart="10dp"
+                    android:padding="10dp"
+                    android:elevation="8dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/help" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/green_card"
+            cardElevation="16dp"
+            android:layout_width="match_parent"
+            android:layout_below="@id/pink_card"
+            android:layout_height="180dp"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@color/green"
+            app:cardCornerRadius="16dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_guard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="guard"
+                        android:textSize="24sp"
+                        android:elevation="8dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/text_msg_guard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:elevation="8dp"
+                        android:textSize="14dp"
+                        android:text="Open when you are on a\npotenntially dangerous journey"
+                        android:textColor="#fff" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_guard"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:elevation="8dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/guard" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</RelativeLayout>
