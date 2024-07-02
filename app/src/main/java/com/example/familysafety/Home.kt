@@ -18,10 +18,23 @@ class Home : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val listMembers= listOf<MemberModel>(
+            MemberModel("Shailesh"),
+            MemberModel("Vinayak"),
+            MemberModel("Ketan"),
+        )
+
+        val adapter=MemberAdapter(listMembers)
+
+    }
+
     companion object {
 
-        @JvmStatic fun newInstance() = Home().apply {
+        @JvmStatic
+        fun newInstance() = Home()
 
-                    }
-                }
     }
+}

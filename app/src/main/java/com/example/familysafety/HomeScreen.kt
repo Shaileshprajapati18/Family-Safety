@@ -30,9 +30,9 @@ class HomeScreen : AppCompatActivity() {
         }
     }
 
-    private fun inflateFragment(fragment: Fragment) {
+    private fun inflateFragment(newInstance: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
+        transaction.replace(R.id.container, newInstance)
         transaction.commit()
     }
 }
