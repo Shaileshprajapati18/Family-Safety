@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.familysafety" />
+                  <option name="mobileSdkAppId" value="1:80912881879:android:1405cb334f672e9843b892" />
+                  <option name="projectId" value="family-safety-f883c" />
+                  <option name="projectNumber" value="80912881879" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
