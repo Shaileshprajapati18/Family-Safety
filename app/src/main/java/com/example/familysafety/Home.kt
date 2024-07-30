@@ -6,14 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.d4d5.myfamily.MyFamilyDatabase
+import com.example.familysafety.Model.ContactModel
+import com.example.familysafety.Model.MemberModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class Home : Fragment() {
+
+   lateinit var InviteAdapter : InviteAdapter
 
     private val listContacts :ArrayList<ContactModel> = ArrayList()
 
@@ -65,19 +71,36 @@ class Home : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        val InviteAdapter = InviteAdapter(listContacts)
+         InviteAdapter = InviteAdapter(listContacts)
+
+        fetchDatabaseContacts()
 
         CoroutineScope(Dispatchers.IO).launch {
-            listContacts.addAll(fetchContacts())
-            withContext(Dispatchers.Main) {
-                InviteAdapter.notifyDataSetChanged()
-            }
+
+            insertdatabaseContacts(fetchContacts())
+
         }
 
         val invitRecyclerView = requireView().findViewById<RecyclerView>(R.id.recycler_invite)
         invitRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         invitRecyclerView.adapter = InviteAdapter
 
+    }
+
+    private fun fetchDatabaseContacts() {
+
+        val database= MyFamilyDatabase.getDatabase(requireContext())
+         database.contactDao().getAllContacts().observe(viewLifecycleOwner){
+             listContacts.clear()
+             listContacts.addAll(it)
+
+             InviteAdapter.notifyDataSetChanged()
+         }
+    }
+
+    private fun insertdatabaseContacts(listContacts: ArrayList<ContactModel>) {
+        val database= MyFamilyDatabase.getDatabase(requireContext())
+        database.contactDao().insertAll(listContacts)
     }
 
     private fun fetchContacts(): ArrayList<ContactModel> {

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.familysafety.Model.ContactModel
 
 class InviteAdapter(private val listContact: List<ContactModel>) : RecyclerView.Adapter<InviteAdapter.ViewHolder>() {
 
