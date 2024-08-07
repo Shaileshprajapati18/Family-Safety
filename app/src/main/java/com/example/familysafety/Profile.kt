@@ -24,7 +24,7 @@ class Profile : Fragment() {
 
         @JvmStatic
         fun newInstance() = Profile().apply {
-
+///////////////////
             }
     }
 }
