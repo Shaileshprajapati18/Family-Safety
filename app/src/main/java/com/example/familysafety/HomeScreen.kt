@@ -10,6 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 
 class HomeScreen : AppCompatActivity() {
 
@@ -26,6 +29,23 @@ class HomeScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_homescreen)
 
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val name=currentUser?.displayName.toString()
+        val mail=currentUser?.email.toString()
+        val phoneNumber=currentUser?.phoneNumber.toString()
+        val imageUrl=currentUser?.photoUrl.toString()
+
+        val db= Firebase.firestore
+
+        val user= hashMapOf(
+            "name" to name,
+            "mail" to mail,
+            "phoneNumber" to phoneNumber,
+            "imageUrl" to imageUrl
+        )
+
+        db.collection("users").document(mail).set(user).addOnSuccessListener {}
+            .addOnFailureListener{}
         askForPermission()
 
         val bottom = findViewById<BottomNavigationView>(R.id.bottom_navigation)

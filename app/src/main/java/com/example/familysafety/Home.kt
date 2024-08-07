@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.d4d5.myfamily.MyFamilyDatabase
 import com.example.familysafety.Model.ContactModel
 import com.example.familysafety.Model.MemberModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -71,7 +74,7 @@ class Home : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-         InviteAdapter = InviteAdapter(listContacts)
+        InviteAdapter = InviteAdapter(listContacts)
 
         fetchDatabaseContacts()
 
@@ -82,9 +85,16 @@ class Home : Fragment() {
         }
 
         val invitRecyclerView = requireView().findViewById<RecyclerView>(R.id.recycler_invite)
-        invitRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        invitRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         invitRecyclerView.adapter = InviteAdapter
 
+        val threeDots = requireView().findViewById<ImageView>(R.id.icon_three_dots)
+        threeDots.setOnClickListener {
+            Toast.makeText(requireContext(), "Signed Out", Toast.LENGTH_SHORT).show()
+            SharePref.putBoolean(PrefConstants.IS_USER_LOGGED_IN,false)
+            FirebaseAuth.getInstance().signOut()
+        }
     }
 
     private fun fetchDatabaseContacts() {
